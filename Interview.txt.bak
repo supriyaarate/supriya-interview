@@ -1,0 +1,198 @@
+1. Why do we have a Marker/Tag/Empty Interface in Java?
+
+A marker interface in java doesn’t have fields and methods.Hence it is also called empty interface. 
+example: java.lang.Cloneable, java.lang.Serializable 
+
+
+2.What do you think ‘Is Optional the Same as null?’
+Optional is a new class under package java.util. The purpose of this call is to address the infamous NullPointerException. 
+It is a way to express that null might be a special value.
+Optional  can use functional programming style with ifPresent() and the other methods rather than needing an if statement. 
+
+
+3.static keyword?
+1) When you want to store data that’s common to all instances.
+2) When you need to access class members without creating an object of the class.
+3) When you want to execute a block of code before calling any method of the class ie. Static block.
+
+4.How can we restrict a class or interface to be subclassed without using final keyword? 
+
+Sealed modifier java 15
+-sealed class Parent 
+	permits Child1, Child2 { }
+	
+
+5.What is a referenced variable in Java ? How many types of reference variables are possible?
+Ans: When we create a variable by using Objects (as a Datatype), we call them referenced variables. 
+However, we create them by using Array, Class, Interface or Enum.
+
+
+
+7.What is ‘var’ identifier introduced in Java 10 ?
+Ans : ‘var’ is a case sensitive type identifier that helps java compiler to infer the values, introduced in Java 10 version. 
+However, it is not a keyword. We can only use them in case of local variables. Moreover, we can use var anywhere in java except in class name
+
+
+8.What is difference between Method hiding & Method Overriding? What is the purpose of overriding a method?
+Ans: Re-defining parent class non-static method in child class is called method overriding. 
+Re-defining parent class static method in child class is called method hiding. This is because we can’t override parent’s class static methods
+
+
+9.What is a local block in java ?
+Ans : A nameless block { } that is created inside a method is called a local block. 
+We use it for decreasing the scope of a local variable. We can write any statement inside it what all are applicable to a method. A variable declared inside a local block can’t be accessed after the closing curly bracket of this local block.
+
+
+10.Interfaces Types:
+Normal
+functional
+marker
+
+11. Static --> keyword used for creating variables, methods that belong to class class rather than the instance of the class
+can be applied to blocs and inner class as well. Access using class name 
+executed during class loading . it is stored in Meta space
+
+
+12. Hash map :
+
+Map<String , String> hm = new Hashmap<String , String>();
+
+Map<String , String> hm = new Hashmap<String , String>(initial capacity);
+
+Map<String , String> hm = new Hashmap<String , String>(initial capacity, load factor);
+
+Initial capacity - array of 16 segments , default load factor is 75%
+
+
+13.How to tune performance of Hashmap ? 2 nd and 3rd option
+
+
+14.Hash map put works?
+
+calculate hashcode from key
+calculate index -> hashcode & (n-1)
+storing entry at index in the format hashcode,key,value, reference to next node if present
+if same index comes again, This is hashing collision
+it verifies hash code of existing data with the new one 
+if diferenct then it creates the new entry as a next entry in same segment in the form of a linked list 
+
+
+
+ 15.Hash map get works?
+ 
+ calculate hashcode from key
+ calculate index 
+ compare hascode of key, hashcode of stored entry
+ compare key we pass and key at stored entry using equlas. if true return stored value else null
+
+
+16.collections view provided by hashmap
+
+hm.entryset()
+hm.keyset()
+hm.values()
+
+
+17. How to make hm thread safe 
+
+collections.synchronisedMap(hm)
+collections.synchronisedSortedMap(hm)
+
+18. How to make hm read only
+
+collections.unmodificableMap(hm)
+
+19.Iteratae a map?
+
+>Iterator
+>map.entrySet() + for each loop
+>Java 8 forEach
+>Using keySet() and Values()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+=========================================================================================
+
+Java8
+
+1. Features -> Lamba exp
+Functional Interface
+forEach method
+STream API
+LocalDate, LocalTime, locaDateTime
+Default method /static in Interface
+
+2. Why default method in Interface?
+
+Any method added in Interface  it needs to be added in all classes that has implemented it
+by addding new metod has default, this cn be avoided. provides Backward compatiblity.
+
+3. Why static method in Interface?
+
+provide default implementation which cannot be chnaged
+
+4. Adv of new Date API
+
+No support for timezone
+
+5. Lamba expressions: 
+1. functions with no name and identifier
+2.helps to express single metod class more compactly'
+
+()-> expression
+(Parameter) -> expression
+
+(Parameter) ->{Multiple statements}
+
+
+6.Stream:
+
+Stream is not a collection rather it is a technique to make processing of collection’s data easy by supporting functional-style operations.
+
+♠ A stream a sequence of data and is not a data structure that stores elements.
+♦ An operation on a stream produces a result, but does not modify its source.
+♥ While collections have a finite size, streams need not.
+♣ The elements of a stream are only visited once during the life of a stream. 
+Like an Iterator, a new stream must be generated to revisit the same elements of the source.
+
+
+7. collection API    | Stream
+
+Stores data          |  does not store data just process it
+
+index access is poss | index access is not poss
+
+
+iteration external   | iteration internal 
+
+Access of elements   | Access of elements parallel
+sequential
+
+
+8. Create custom annotation
+
+@Retention(RetentionPolicy.RUNTIME)
+@Target(Element.Type)
+
+public @interface name
+{
+String uname()
+
+default "Supriya"
+}
+
+
